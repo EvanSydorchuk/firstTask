@@ -1,0 +1,30 @@
+<div class="container">
+        <div class="wrapper">
+            <div class="header">
+                <div class="row">
+                    <div class="logo col-sm-8">
+                        <h1>Task for magnise</h1>
+                    </div>
+                    <div class="search col-sm-4 float-right">
+                        <input class="" type="text" placeholder="filter comments, type something">
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <ul >
+                    <li *ngFor="let comment of comments">
+                        <input type="text">
+                        <span>{{todo.text}}</span>
+                        [<a href="#" (click)="remove(todo)">remove</a>]
+                    </li>
+                </ul>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Fuga eligendi laborum, sed libero voluptatem inventore, qui praesentium, 
+                    illum cumque odio voluptate commodi voluptatum consequatur laudantium nam officia 
+                    quasi dolores sequi?
+                </p>
+                <input type="text">
+                <button class="btn btn-primary">Add</button>
+            </div>
+        </div>
+</div>
