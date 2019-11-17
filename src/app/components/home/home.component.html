@@ -11,20 +11,26 @@
                 </div>
             </div>
             <div class="content">
-                <ul >
-                    <li *ngFor="let comment of comments">
-                        <input type="text">
-                        <span>{{todo.text}}</span>
-                        [<a href="#" (click)="remove(todo)">remove</a>]
-                    </li>
-                </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Fuga eligendi laborum, sed libero voluptatem inventore, qui praesentium, 
-                    illum cumque odio voluptate commodi voluptatum consequatur laudantium nam officia 
-                    quasi dolores sequi?
-                </p>
-                <input type="text">
-                <button class="btn btn-primary">Add</button>
+                <ng-container *ngTemplateOutlet="treeViewList;
+                                                context:{$implicit:comments}">
+                </ng-container>
+                <ng-template #treeViewList let-list>
+                    <ul>
+                        <li *ngFor="let item of list; let i = index">
+                            <div>
+                                {{ item.text }}
+                                <button class="btn btn-danger">Remove comment</button>
+                            </div>
+                            <div>
+                                <textarea type="text"></textarea>
+                                <button class="btn btn-primary">AddComment</button>
+                            </div>
+                            <ng-container *ngTemplateOutlet="treeViewList;
+                                        context:{$implicit: item.subComments}"></ng-container>
+                        </li>
+                    </ul>
+                </ng-template>
+                
             </div>
         </div>
 </div>
