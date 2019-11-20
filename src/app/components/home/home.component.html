@@ -15,16 +15,16 @@
                                                 context:{$implicit:comments}">
                 </ng-container>
                 <ng-template #treeViewList let-list>
-                    <ul>
+                    <ul class="nested">
+                        <span class="nested-branch"></span>
                         <li *ngFor="let item of list; let i = index">
-                            <div>
-                                {{ item.text }}
-                                <button class="btn btn-danger">Remove comment</button>
-                            </div>
-                            <div>
-                                <textarea type="text"></textarea>
-                                <button class="btn btn-primary">AddComment</button>
-                            </div>
+                            <div class="comment">
+                                <p>{{ item.text }}</p>
+                                <p>{{ item.id }}</p>
+                                <a (click)="remove(item)" class="btn btn-danger">Remove comment</a>
+                                <textarea #text></textarea>
+                                <button (click)="add(item, text.value)" class="btn btn-primary">AddComment</button>
+                                </div>
                             <ng-container *ngTemplateOutlet="treeViewList;
                                         context:{$implicit: item.subComments}"></ng-container>
                         </li>

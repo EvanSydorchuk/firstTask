@@ -8,3 +8,50 @@
 .search {
     height: initial;
 }
+
+ul, li {
+    list-style: none;
+}
+
+.nested li {
+    margin-left: 1em;
+}
+
+.comment {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.comment p {
+    word-break: break-all;
+}
+
+ul.nested li ul {
+    border-left: 1px solid #333;
+    position: relative;
+}
+
+ul.nested li ul::after {
+    content: '';
+    /* border-bottom: 1px solid #ccc; */
+    position: absolute;
+    width: 3em;
+    top: 2em;
+    left: 6px;
+}
+
+/* .nested li::after {
+    content: '';
+    border-bottom: 1px solid #ccc;
+} */
+
+/* .nested-branch {
+    border-bottom: 1px solid #ccc;
+    position: absolute;
+    width: 2em;
+    top: 2em;
+
+} */
+

@@ -17,10 +17,16 @@ export class CommentService {
     this.comments[1].subComments.push({
       id: 12,
       text: '123',
-      commentDeepLevel:1,
+      commentDeepLevel:2,
       subComments:[],
-      parentId:2
-    });
+      parentId:1
+    },{
+        id: 13,
+        text: 'lorem',
+        commentDeepLevel:2,
+        subComments:[],
+        parentId:1
+      });
   
     console.table(this.comments);
 
