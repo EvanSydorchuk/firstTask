@@ -1,36 +1,35 @@
 <div class="container">
-        <div class="wrapper">
-            <div class="header">
-                <div class="row">
-                    <div class="logo col-sm-8">
-                        <h1>Task for magnise</h1>
-                    </div>
-                    <div class="search col-sm-4 float-right">
-                        <input class="" type="text" placeholder="filter comments, type something">
-                    </div>
+    <div class="wrapper">
+        <div class="header">
+            <div class="row">
+                <div class="logo col-sm-8">
+                    <h1>Task for magnise</h1>
+                </div>
+                <div class="search col-sm-4 float-right">
+                    <input class="" (keyup)="0" type="text" #searchInput>
                 </div>
             </div>
-            <div class="content">
-                <ng-container *ngTemplateOutlet="treeViewList;
-                                                context:{$implicit:comments}">
-                </ng-container>
-                <ng-template #treeViewList let-list>
-                    <ul class="nested">
-                        <span class="nested-branch"></span>
-                        <li *ngFor="let item of list; let i = index">
-                            <div class="comment">
-                                <p>{{ item.text }}</p>
-                                <p>{{ item.id }}</p>
-                                <a (click)="remove(item)" class="btn btn-danger">Remove comment</a>
-                                <textarea #text></textarea>
-                                <button (click)="add(item, text.value)" class="btn btn-primary">AddComment</button>
-                                </div>
-                            <ng-container *ngTemplateOutlet="treeViewList;
-                                        context:{$implicit: item.subComments}"></ng-container>
-                        </li>
-                    </ul>
-                </ng-template>
-                
-            </div>
         </div>
+        <div class="content">
+            <ng-container *ngTemplateOutlet="treeViewList;
+                                                context:{$implicit:comments}">
+            </ng-container>
+            <ng-template #treeViewList let-list>
+                <ul class="nested">
+                    <span class="nested-branch"></span>
+                    <li *ngFor="let item of list; let i = index">
+                        <div class="comment">
+                            <p>{{ item.text }}</p>
+                            <a (click)="remove(item)" class="btn btn-danger">Remove comment</a>
+                            <textarea #text></textarea>
+                            <button (click)="add(item, text.value)" class="btn btn-primary">AddComment</button>
+                        </div>
+                        <ng-container *ngTemplateOutlet="treeViewList;
+                                        context:{$implicit: item.subComments}"></ng-container>
+                    </li>
+                </ul>
+            </ng-template>
+
+        </div>
+    </div>
 </div>

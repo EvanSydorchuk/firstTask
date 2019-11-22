@@ -27,21 +27,19 @@ export class CommentService {
         subComments:[],
         parentId:1
       });
-  
-    console.table(this.comments);
 
     return this.comments;
   }
 
   generateComments() {
     for(let i = 0; i < 10; i++) {
-      this.comments.push({
+      this.comments.push( {
         id: i,
         text: 'comment ' + i.toString(),
         commentDeepLevel:1,
         subComments:[],
         parentId:i
-      });
+      } as Comment);
     }
   }
 }

@@ -1,3 +1,4 @@
+import { FilterPipe } from './../../helpers/filter.pipe';
 import { Component, OnInit } from '@angular/core';
 import { CommentService } from '../../services/comment.service';
 import { Comment } from '../../models/comment';
@@ -8,9 +9,7 @@ import { Comment } from '../../models/comment';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  comments: any = [];
-  result: any;
+  comments: Comment[] = [];
 
   constructor(private commentService: CommentService) { }
 
@@ -19,10 +18,10 @@ export class HomeComponent implements OnInit {
   }
 
   add(item, text) {
-    if(text) {
-      let newComment : Comment = {
-        id: this.getRandomInt(20,1000),
-        text:text,
+    if (text) {
+      let newComment: Comment = {
+        id: this.getRandomInt(20, 1000),
+        text: text,
         commentDeepLevel: ++item.commentDeepLevel,
         subComments: [],
         parentId: item.id
@@ -32,7 +31,8 @@ export class HomeComponent implements OnInit {
   }
 
   remove(item) {
-     this.removeNestedComment(this.comments,item.parentId, item.id);
+    this.removeNestedComment(this.comments, item.parentId, item.id);
+    console.table(this.comments);
   }
 
   getRandomInt(min, max) {
@@ -40,25 +40,33 @@ export class HomeComponent implements OnInit {
   }
 
   removeNestedComment(arr, parentId, childId) {
-    if(parentId == childId) {                                          
-      this.comments = this.comments.filter(el=> el.id != parentId);  
+    console.log(parentId, childId);
+    if (parentId == childId) {
+      this.comments = this.comments.filter(el => el.id != parentId);
       return;
     }
 
     let found = arr.find(node => node.id == parentId);
-
-    if(found) {
-        // I could use filter once more, but I wanted to use another approach to remove obj in arr 
-        for(var i = found.subComments.length - 1; i >= 0; i--) {
-          if(found.subComments[i].id === childId) {
-            found.subComments.splice(i, 1);                         
-          }
+    if (found) {
+      // I could use filter once more, but I wanted to use another approach to remove obj in arr 
+      for (var i = found.subComments.length - 1; i >= 0; i--) {
+        if (found.subComments[i].id === childId) {
+          found.subComments.splice(i, 1);
         }
+      }
     }
     else {
       arr.forEach(element => {
         return this.removeNestedComment(element.subComments, parentId, childId);
       });
     }
+  }
+
+  filterData(value) {
+    // this.comments = this.comments.filter(function(o) {
+    //   if (o.subComments) o.subComments = filterData(o.subComments, value);
+    //   return o.id != value
+    // })
+    // return r;
   }
 }

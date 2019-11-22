@@ -2,9 +2,6 @@
     padding-top: 30px;
 }
 
-.header {
-    padding-block: 30px;
-}
 .search {
     height: initial;
 }
@@ -35,23 +32,10 @@ ul.nested li ul {
 
 ul.nested li ul::after {
     content: '';
-    /* border-bottom: 1px solid #ccc; */
-    position: absolute;
     width: 3em;
     top: 2em;
     left: 6px;
 }
 
-/* .nested li::after {
-    content: '';
-    border-bottom: 1px solid #ccc;
-} */
 
-/* .nested-branch {
-    border-bottom: 1px solid #ccc;
-    position: absolute;
-    width: 2em;
-    top: 2em;
-
-} */
 

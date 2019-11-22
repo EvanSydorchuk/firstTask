@@ -1,3 +1,4 @@
+import {  FilterPipe } from './helpers/filter.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -8,11 +9,12 @@ import { HomeComponent } from './components/home/home.component';
   declarations: [
     AppComponent,
     HomeComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [FilterPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
